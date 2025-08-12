@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Session | Gorze Career Coaching</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #4CAF50; /* Gorze brand green */
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--dark);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Booking Layout */
+        .booking-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+            margin-bottom: 60px;
+        }
+        
+        .booking-content {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .session-info {
+            flex: 1;
+        }
+        
+        .session-info h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .session-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .session-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .availability {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-container {
+            flex: 1;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        
+        .calendar-embed {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        #cal-embed {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .booking-content {
+                flex-direction: column;
+            }
+            
+            .calendar-container {
+                position: static;
+            }
+            
+            #cal-embed {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="home.html" class="logo">Gorze<span>.</span></a>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="book.html" class="active">Book Session</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Booking Hero -->
+    <section class="booking-hero">
+        <div class="container">
+            <h1>Book Your Session</h1>
+            <p>Select your preferred time and start your career transformation</p>
+        </div>
+    </section>
+
+    <!-- Booking Content -->
+    <div class="container">
+        <div class="booking-content">
+            <div class="session-info">
+                <h2>Available Sessions</h2>
+                
+                <div class="session-card">
+                    <span class="availability">10 slots available</span>
+                    <h3>Discovery Call</h3>
+                    <p>30-minute free consultation to discuss your career goals and how we can help.</p>
+                    <ul style="list-style: none; margin-top: 15px;">
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i> Video call via Zoom/Google Meet</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i> Personalized career assessment</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i> Actionable next steps</li>
+                    </ul>
+                </div>
+                
+                <div class="session-card">
+                    <span class="availability">5 slots available</span>
+                    <h3>Career Strategy Session</h3>
+                    <p>60-minute deep dive into your career path with customized roadmap.</p>
+                    <ul style="list-style: none; margin-top: 15px;">
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i> Comprehensive skills analysis</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i> Resume and LinkedIn review</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i> Job search strategy</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="calendar-container">
+                <div class="calendar-embed">
+                    <h2 style="margin-bottom: 20px; color: var(--primary);">Select Your Time</h2>
+                    <!-- Cal.com Embed -->
+                    <iframe 
+                        id="cal-embed"
+                        src="https://cal.com/yourusername/30min?embed=true"
+                        frameborder="0"
+                    ></iframe>
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: var(--gray);">
+                        <i class="fas fa-lock" style="margin-right: 5px;"></i>
+                        Secure booking powered by Cal.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Gorze Career Coaching. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Optional: Dynamic slot counter using Cal.com API
+        // Replace with your actual API key and event type ID
+        /*
+        async function updateSlotAvailability() {
+            try {
+                const response = await fetch('https://api.cal.com/v1/event-types?apiKey=YOUR_API_KEY');
+                const data = await response.json();
+                
+                // Update availability badges based on API response
+                document.querySelectorAll('.availability').forEach(badge => {
+                    // Your logic to update slot counts
+                });
+            } catch (error) {
+                console.error("Error fetching slot data:", error);
+            }
+        }
+        updateSlotAvailability();
+        */
+    </script>
+</body>
+</html>
